@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quickstart快速起步</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{message}}（直接使用插值表达式）</h2>
+        <h2 v-text="message">（使用v-text指令显示文本）</h2>
+        <h2 v-text="info">（使用v-text指令显示富文本）</h2>
+        <h2 v-html="info">（使用v-html指令显示文本）</h2>
+
+        <h2 v-pre>Vue.js针不戳，尤其是{{Mustache}}插值表达式</h2>
+        <h2>{{firstName}} {{lastName}}（注意中间空格）</h2> 
+        <h2>{{firstName + lastName}}（字符串拼接）</h2>
+        <h2>{{lastName.length}}个字符(取得属性)</h2>
+        <h2>{{age*2}}（算数表达式）</h2>
+        <h2>{{age>40? '中年':'青年'}}（三目运算）</h2>
+        <h2>{{firstName.split('a').reverse().join(',')}}(使用js函数)</h2>
+        <h2>{{customMethod(firstName)}}(使用自定义函数)</h2>
+        <!-- 开启过滤器用 | 这个符号 -->
+        <h2>{{date|dateFormat(yyyy-mm-dd'')}}</h2>
+    </div>
+
+    <!-- 从本地引入vue.js -->
+    <!-- <script src="../js/vue.js"></script> -->
+
+    <!-- 从CDN引入vue.js -->
+    <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        //全局过滤器
+        Vue.filter('dateFormat',function(input,pattern='')){
+            let dt=new Date(input)
+            //年月日
+            let y=dt.getFullYear()
+            let m=(dt.getMonth()+1).toString().padStart(2,'0')
+            let d=(dt.getDate()).toString().padStart(2,'0')
+            //时分秒
+            let hh=dt.getHours().toString().padStart(2,'0')
+            let mm=dt.getMinutes().toString().padStart(2,'0')
+            let ss=dt.getSeconds().toString().padStart(2,'0')
+            //拼接
+            if(pattern.toLoacleLowerCase() === 'yyyy-mm-dd'){
+                return `${y}-${m}-${d}`
+            }else{
+                return `${y}-${m}-${d}-${hh}-${mm}-${ss}`
+            }
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data:{ 
+                message:'Vue.js',
+                firstName:'Evan',
+                lastName:'You',
+                age:41,
+                info:'<a href="heep://cn/vue.js.org/">Vue.js文档</a>',
+                date:new Date(),
+            },
+
+
+        //     methods: {
+        //         funA(var1,var2){
+        //         },
+        //         funB:function(params){
+        //         }
+        //     },
+        //     filters:{
+        //     },
+        //     // 计算属性
+        //     computed:{
+        //     }
+
+        methods: {
+            customMethod(str){
+                return str.split('a').reverse().join('#')
+            }
+        },
+        // 全局和局部有相同的过滤器名字，会以局部的为准
+        filters:{
+
+        }
+
+        })
+
+    </script>
+</body>
+</html>

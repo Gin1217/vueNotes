@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>你好啊，{{message}}</h2>
+      </div>
+      <!--从CDN引入vue.js-->
+      <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script>
+        const app = new Vue({
+          //初始化一个Vue实例
+          el: "#app", //用于页面渲染Vue实例的元素
+          data: {
+            //定义数据
+            message: "VUE",
+          },
+        });
+      </script>
+</body>
+</html>

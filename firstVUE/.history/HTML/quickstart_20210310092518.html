@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quickstart快速起步</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{message}}（直接使用插值表达式）</h2>
+        <h2>{{firstName}} {{lastName}}（注意中间空格）</h2> 
+        <h2>{{firstName + lastName}}（字符串拼接）</h2>
+        <h2>{{lastName.length}}个字符(取得属性)</h2>
+        <h2>{{age*2}}（算数表达式）</h2>
+        <h2>{{age>40? '中年':'青年'}}（三目运算）</h2>
+        <h2>{{firstName.split('a').reverse().join(',')}}(使用js函数)</h2>
+        <h2>{{customMethod(firstName)}}(使用自定义函数)</h2>
+        <h2>{{date}}</h2>
+    </div>
+
+    <!-- 从本地引入vue.js -->
+    <!-- <script src="../js/vue.js"></script> -->
+
+    <!-- 从CDN引入vue.js -->
+    <script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{ 
+                message:'Vue.js',
+                firstName:'Evan',
+                lastName:'You',
+                age:41,
+                info:'<a href="heep://cn/vue.js.org/">Vue.js文档</a>',
+                date:new Date(),
+            },
+
+
+        //     methods: {
+        //         funA(var1,var2){
+        //         },
+        //         funB:function(params){
+        //         }
+        //     },
+        //     filters:{
+        //     },
+        //     // 计算属性
+        //     computed:{
+        //     }
+
+        methods: {
+            customMethod(str){
+                return str.split('a').reverse().join('#')
+            }
+        },
+
+        })
+
+    </script>
+</body>
+</html>

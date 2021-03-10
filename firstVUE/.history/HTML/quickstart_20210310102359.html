@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qickstart快速起步</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <h2>{{test}}</h2> -->
+        <h2 v-text="info">(使用v-text指令显示富文本)</h2>
+        <h2 v-html="info">(使用v-thtml指令显示富文本)</h2>
+        <h2 v-pre>Vue.js很不错，尤其是{{Mustance}}插值表达式</h2>
+        <h2>{{message}}  (直接使用插值表达式)</h2>
+        <h2>{{firstName}} {{lastName}} (注意中间空格)</h2>
+        <h2>{{lastName + lastName}} (字符串拼接)</h2>
+        <h2>{{lastName.length}}个字符  (取得属性)</h2>
+        <h2>{{age *2 }}  (算术表达式)</h2>
+        <h2>{{age > 40 ? '中年':'青年'}}   (三目运算)</h2>
+        <h2>{{firstName.split('a').reverse().join(',')}} (使用js函数)</h2>
+        <h2>{{customMethod(firstName)}}  (使用自定义函数)</h2>
+        <h2>{{date|dateFormat('yyyy-mm-dd')}}</h2>
+        <h2>{{date|dateFormat('')}}</h2>
+    </div>
+    <!-- <script src="../js/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //全局过滤器
+        Vue.filter('dateFormat', function(input, pattern = '') {
+            let dt = new Date(input)
+            //年月日
+            let y = dt.getFullYear()
+            let m = (dt.getMonth() + 1).toString().padStart(2,'0')
+            let d = dt.getDay().toString().padStart(2,'0')
+            //时分秒
+            let hh = dt.getHours().toString().padStart(2,'0')
+            let mm = dt.getMinutes().toString().padStart(2,'0')
+            let ss = dt.getSeconds().toString().padStart(2,'0')
+            // 拼接
+            if(pattern.toLocaleLowerCase() === 'yyyy-mm-dd') {
+                return `${y}-${m}-${d}`
+            }else {
+                return `${y}-${m}-${d}  ${hh}:${mm}:${ss}`
+            }
+
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                Mustance: 'Mustance',
+                message: 'Vue.js',
+                firstName: 'Evan',
+                lastName: 'You',
+                age: 40,
+                info: '<a href="https://cn.vuejs.org/">Vue.js文档</a>',
+                date: new Date(),
+             },
+            methods: {
+                customMethod(str){
+                    return str.split('a').reverse().join('#')
+                }
+            },
+            // mounted() {
+            //     this.timer=setInterval(function(){
+
+            //     },1000)
+            // },
+
+            mounted() {
+                this.timer=setInterval(( )=>{
+                this.date=new Date()
+                },1000)
+            },
+
+
+
+            beforeDestroy() {
+                if(this.timer){
+                    clearInterval(this.timer)
+                }
+            },
+
+
+
+
+            filters: {
+                dateFormat : function (input, pattern = '') {
+                    let dt = new Date(input)
+            //年月日
+            let y = dt.getFullYear()
+            let m = (dt.getMonth() + 1).toString().padStart(2,'0')
+            let d = dt.getDay().toString().padStart(2,'0')
+            //时分秒
+            let hh = dt.getHours().toString().padStart(2,'0')
+            let mm = dt.getMinutes().toString().padStart(2,'0')
+            let ss = dt.getSeconds().toString().padStart(2,'0')
+            // 拼接
+            if(pattern.toLocaleLowerCase() === 'yyyy-mm-dd') {
+                return `${y}年-${m}月-${d}日 `
+            } else {
+                return `${y}年-${m}月-${d}日  ${hh}时:${mm}分:${ss}秒`
+            }
+ 
+                }
+            }
+           
+        })
+    </script>
+</body>
+</html>
