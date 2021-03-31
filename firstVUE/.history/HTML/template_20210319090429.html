@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for列表渲染练习</title>
+</head>
+
+</head>
+
+<body>
+    <div id="app" class="box">
+        <h3>v-for遍历数组</h3>
+        <template v-for="item in persons">
+            <div v-if="item.age >20">{{ item.name}}</div>
+            <div v-else="item.age >20">{{ item.age}}</div>
+        </template>
+
+        <hr>
+        <h3>v-for遍历对象</h3>
+        <ul>
+            <li v-for="(value,key) in students">{{key}} -------{{value}}</li>
+        </ul>
+
+
+
+
+    </div>
+    <!-- <script src="../js/vue.js"> -->
+    <!-- 开发环境版本，包含了有帮助的命令行警告,从CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                persons: [
+                    { name: 'aaa', age: 18 },
+                    { name: 'bbb', age: 19 },
+                    { name: 'ccc', age: 20 },
+                    { name: 'ddd', age: 21 },
+                ]
+            },
+            students: {
+                name: 'aba',
+                age: 20,
+                gender: 'male,'
+            },
+
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
